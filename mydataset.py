@@ -43,15 +43,17 @@ def prepare_data(csv_1="csv_files/annotations.csv", csv_2="csv_files/images.csv"
     labeled_images = our_images.merge(csv_annots, on="id")[["file_name", "annotation_value"]]
     strip = lambda x : x.lstrip(" u'").rstrip("'")
     labeled_images["annotation_value"] = labeled_images["annotation_value"].map(strip)
-    labeled_images = labeled_images[labeled_images["annotation_value"].isin(["receipt", "invoice", "slip", "inforeceipt", "fisandslip"])]
+    # tester icin discard disari cikarildi
+    #labeled_images = labeled_images[labeled_images["annotation_value"].isin(["receipt", "discard", "invoice", "slip", "inforeceipt", "fisandslip"])]
     
+    labeled_images = labeled_images[labeled_images["annotation_value"].isin(["receipt", "invoice", "slip", "inforeceipt", "fisandslip"])]
     classes = {}
     classes["receipt"] = len(labeled_images[labeled_images["annotation_value"] == "receipt"])
     classes["invoice"] = len(labeled_images[labeled_images["annotation_value"] == "invoice"])
     classes["slip"] = len(labeled_images[labeled_images["annotation_value"] == "slip"])
     classes["inforeceipt"] = len(labeled_images[labeled_images["annotation_value"] == "inforeceipt"])
     classes["fisandslip"] = len(labeled_images[labeled_images["annotation_value"] == "fisandslip"])
-
+    classes["discard"] = len(labeled_images[labeled_images["annotation_value"] == "discard"])
     print(classes["receipt"], classes["invoice"], classes["slip"], classes["inforeceipt"], classes["fisandslip"])
 
     clean_labeled_images = labeled_images

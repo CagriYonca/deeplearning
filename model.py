@@ -1,4 +1,5 @@
 import torch
+import datetime
 import torch.nn as nn
 import torch.optim as optim
 import numpy as np
@@ -167,7 +168,7 @@ def test_model(model, criterion, dataloader=None, datasizes=None, labels_for_con
                     a = transforms.ToPILImage()(new_inputs[image]) 
                     a = PIL.ImageOps.invert(a)
                     a = a.rotate(i)
-                    a = transforms.functional.to_grayscale(a, 3)
+                    #a = transforms.functional.to_grayscale(a, 3)
                     a = transforms.ToTensor()(a)
                     new_inputs[image] = a
             new_outputs = model(new_inputs.to(config.device))
