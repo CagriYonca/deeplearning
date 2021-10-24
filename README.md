@@ -1,3 +1,3 @@
 # deeplearning
 
-PyTorch framework'u kullanarak oluşturulan network 100 bin görüntü ile 5 sınıf üzerine eğitildi ve %96.7 gibi bir doğruluk elde edildi.
+The network created using the PyTorch framework was trained on 5 classes with 100 thousand images and an accuracy of 96.7% was obtained.
